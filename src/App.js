@@ -5,22 +5,29 @@ import Nav from './components/Nav';
 import Content from './components/Content';
 import data from './components/Data';
 
+
+const Container = styled.main`
+  width: 100%;
+  margin: auto;
+  max-width: 900px;
+`;
+
+
 function App() {
-  const [scrapHandle, setScrapHandle] = useState(Array(data.length).fill(false));
-  const [scrap, setScrap] = useState(false);
+  const [productsScrapToggle, setProductsScrapHandle] = useState(Array(data.length).fill(false));
+  const [scrapResultToggle, setScrapResultToggle] = useState(false);
   const [page, setPage] = useState(1);
 
-  const handleClick = (i) => {
-    const newScrap = scrapHandle.slice();
+  const scrapToggleClick = (i) => {
+    const newScrap = productsScrapToggle.slice();
     newScrap[i] = !newScrap[i];
-    setScrapHandle(newScrap);
+    setProductsScrapHandle(newScrap);
   };
 
-  const scrapData = data.filter((value, index) => scrapHandle[index]);
+  const scrapTrueData = data.filter((value, index) => productsScrapToggle[index]);
 
   useEffect(() => {
     const loadMoreData = () => {
-      console.log("ddddddddddd")
       setPage(page + 1);
     };
   
@@ -38,16 +45,15 @@ function App() {
   }, [page]);
 
   return (
-    <Container>
-      <Nav scrap={scrap} setScrap={setScrap} />
-      <Content data={scrap ? scrapData : data} ScrapHandle={scrapHandle} onClick={handleClick} />
-    </Container>
-  );
+  <Container>
+    <Nav scrapResultToggle={scrapResultToggle} setScrapResultToggle={setScrapResultToggle} title="스크랩한 결과 보기" />
+    <Content 
+      data={scrapResultToggle ? scrapTrueData : data} 
+      productsScrapToggle={productsScrapToggle} 
+      scrapToggleClick={scrapToggleClick}
+    />
+  </Container>
+);
 }
 
 export default App;
-
-const Container = styled.main`
-  margin: auto;
-  max-width: 900px;
-`;
