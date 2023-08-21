@@ -1,27 +1,4 @@
-
 import styled from 'styled-components'
-
-const Nav = ({scrap,setScrap}) => {
-
-  return(
-  <Header>
-    {scrap ? 
-    (<ScrapImg 
-    src='/images/scrap.png'
-    alt='Scrap' 
-    onClick={()=>setScrap(false)}/>)
-    :
-    (<ScrapImg 
-    src='/images/no_scrap.png'
-    alt='Scrap' 
-    onClick={()=>setScrap(true)}/>)}
-    <Text>스크랩한 결과만 보기</Text>
-  </Header>
-  )
-  }
-
-
-export default Nav
 
 const Header = styled.div`
   display:flex;
@@ -38,3 +15,22 @@ const ScrapImg = styled.img`
   height:20px;
   cursor:pointer;
 `
+
+
+const Nav = ({ scrapResultToggle, setScrapResultToggle, title }) => {
+  const toggleImgSrc = scrapResultToggle ? '/images/scrap.png' : '/images/no_scrap.png';
+  const toggleAltText = scrapResultToggle ? 'Scrap' : 'No Scrap';
+  return (
+    <Header>
+      <ScrapImg
+        src={toggleImgSrc}
+        alt={toggleAltText}
+        onClick={() => setScrapResultToggle(!scrapResultToggle)}
+      />
+      <Text>{title}</Text>
+    </Header>
+  );
+};
+
+
+export default Nav
