@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import ContentItem from './ContentItem'; 
+import ContentItem from './ContentItem';
+import data from './Data';
 
 const Container = styled.div`
   margin-top: 20px;
@@ -9,10 +10,21 @@ const Container = styled.div`
   gap: 5px;
 `;
 
-const Content = ({ data, productsScrapToggle, scrapToggleClick }) => {
+const Content = ({ scrapResultToggle }) => {
+  const [productsScrapToggle, setProductsScrapToggle] = useState(Array(data.length).fill(false));
+
+  const scrapToggleClick = (i) => {
+    const newScrap = productsScrapToggle.slice();
+    newScrap[i] = !newScrap[i];
+    setProductsScrapToggle(newScrap);
+  };
+
+  const filteredData = scrapResultToggle ? data.filter((value, index) => productsScrapToggle[index]) : data;
+
+
   return (
     <Container>
-      {data.map((item, index) => (
+      {filteredData.map((item, index) => (
         <ContentItem
           key={index}
           item={item}
