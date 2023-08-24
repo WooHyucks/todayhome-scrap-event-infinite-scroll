@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Header = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   gap:5px;
   margin-top:30px;
-`;
+`
 
 const Text = styled.span`
   font-size: 14px;
@@ -43,4 +43,6 @@ const Nav = ({ scrapResultToggle, setScrapResultToggle, title }) => {
   );
 };
 
+
 export default Nav;
+
