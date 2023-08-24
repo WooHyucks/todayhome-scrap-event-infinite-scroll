@@ -42,7 +42,6 @@ function App() {
     scrapResultToggle={scrapResultToggle} 
     setScrapResultToggle={setScrapResultToggle} 
     title="스크랩한 결과 보기" />
-    
     <Content scrapResultToggle={scrapResultToggle} />
   </Container>
 );

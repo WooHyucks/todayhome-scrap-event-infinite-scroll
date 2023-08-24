@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const ItemList = styled.div`
@@ -25,18 +26,27 @@ const ClickScrapIcon = styled.img`
   cursor: pointer;
 `;
 
-const ContentItem = ({ item, isScrapped, onScrapToggle}) => {
-  const { text, imageUrl } = item;
+const ImgUrl = React.memo(({ item }) => <Img src={item.imageUrl} alt="/" />);
 
+const ProductTitle = React.memo(({ item }) => <Text>{item.text}</Text>);
+
+const ClickScrapToggle = React.memo(({ isScrapped, onScrapToggle }) => {
+  console.log("코드확인");
+  return (
+    <ClickScrapIcon
+      src={isScrapped ? "/images/scrap_on.png" : "/images/scrap_off.png"}
+      alt="/"
+      onClick={onScrapToggle}
+    />
+  );
+});
+
+const ContentItem = ({ item, isScrapped, onScrapToggle }) => {
   return (
     <ItemList>
-      <Text>{text}</Text>
-      <Img src={imageUrl} alt="/" />
-      <ClickScrapIcon
-        src={isScrapped ? "/images/scrap_on.png" : "/images/scrap_off.png"}
-        alt="/"
-        onClick={onScrapToggle}
-      />
+      <ProductTitle item={item} />
+      <ImgUrl item={item} />
+      <ClickScrapToggle isScrapped={isScrapped} onScrapToggle={onScrapToggle} />
     </ItemList>
   );
 };
