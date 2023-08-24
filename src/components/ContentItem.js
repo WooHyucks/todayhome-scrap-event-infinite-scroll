@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const ItemList = styled.div`
   position: relative;
@@ -25,8 +26,9 @@ const ClickScrapIcon = styled.img`
   cursor: pointer;
 `;
 
-const ContentItem = ({ item, isScrapped, onScrapToggle }) => {
+const ContentItem = ({ item, isScrapped, onScrapToggle}) => {
   const { text, imageUrl } = item;
+
   return (
     <ItemList>
       <Text>{text}</Text>
@@ -40,5 +42,4 @@ const ContentItem = ({ item, isScrapped, onScrapToggle }) => {
   );
 };
 
-export default ContentItem
-
+export default ContentItem;
