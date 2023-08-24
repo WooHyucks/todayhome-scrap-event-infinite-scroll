@@ -19,12 +19,9 @@ const ScrapImg = styled.img`
   cursor: pointer;
 `;
 
-const Nav = ({ title }) => {
-  const [scrapResultToggle, setScrapResultToggle] = useState(false);
-
+const Nav = ({ scrapResultToggle, setScrapResultToggle, title }) => {
   const toggleImgSrc = scrapResultToggle ? '/images/scrap.png' : '/images/no_scrap.png';
   const toggleAltText = scrapResultToggle ? 'Scrap' : 'No Scrap';
-
   return (
     <Header>
       <ScrapImg
@@ -36,5 +33,6 @@ const Nav = ({ title }) => {
     </Header>
   );
 };
+
 
 export default Nav;
